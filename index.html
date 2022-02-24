@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="js-file.js" defer></script>
+    <title>Weather</title>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <h1 id="city-title"></h1>
+        <form id="form">
+          <input type="text" id="location_text" />
+          <button type="button" id="submit" class="default-button">
+            Submit
+          </button>
+          <button type="button" id="unitSwitch-button" class="default-button">
+            Switch Units
+          </button>
+        </form>
+      </div>
+      <div id="center">
+        <div id="left-div">
+          <p id="main-left"></p>
+          <p id="temp-left"></p>
+        </div>
+        <div id="right-div">
+          <div id="feels-like-div" class="right-card">
+            <img src="./SVG/thermo.svg" class="small-img" />
+            <div class="right-div-right">
+              <p class="right-p">Feels Like</p>
+              <p id="feels-like-info" class="right-info"></p>
+            </div>
+          </div>
+          <div id="rain-chance-div" class="right-card">
+            <img src="./SVG/rainy.svg" class="small-img" />
+            <div class="right-div-right">
+              <p class="right-p">Chance of Rain</p>
+              <p id="rain-info" class="right-info"></p>
+            </div>
+          </div>
+          <div id="humidity-div" class="right-card">
+            <img src="./SVG/cloud.svg" class="small-img" />
+            <div class="right-div-right">
+              <p class="right-p">Humidity</p>
+              <p id="humidity-info" class="right-info"></p>
+            </div>
+          </div>
+          <div id="wind-speed-div" class="right-card">
+            <img src="./SVG/wind.svg" class="small-img" />
+            <div class="right-div-right">
+              <p class="right-p">Wind Speed</p>
+              <p id="wind-info" class="right-info"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+        <div id="button-div">
+          <button type="button" class="default-button">Daily</button>
+          <button type="button" class="default-button">Hourly</button>
+        </div>
+        <div id="tiles-div"></div>
+      </div>
+    </div>
+  </body>
+</html>

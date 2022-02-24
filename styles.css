@@ -1,0 +1,93 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url("background.jpg");
+  background-size: cover;
+}
+
+#container {
+  height: 100%;
+  padding: 0px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+#city-title {
+  color: white;
+  margin-right: 20px;
+}
+
+#header {
+  display: flex;
+  align-items: center;
+}
+
+#location_text {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+.small-img {
+  width: 40px;
+  height: 40px;
+}
+
+.right-div-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.right-card {
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-top: -35px;
+  min-height: 100px;
+}
+
+#center {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.right-info {
+  margin-top: -5px;
+  font-size: 20px;
+}
+
+#left-div {
+  color: white;
+
+  flex-grow: 1;
+}
+
+#main-left {
+  font-size: 4em;
+  margin-top: -5px;
+}
+
+#temp-left {
+  margin-top: -35px;
+  font-size: 3em;
+}
+
+#footer {
+}
+
+.default-button {
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+}
+.default-button:hover {
+  background-color: rgb(154, 154, 154);
+}
