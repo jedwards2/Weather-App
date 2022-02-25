@@ -91,3 +91,14 @@ body {
 .default-button:hover {
   background-color: rgb(154, 154, 154);
 }
+
+#tiles-div {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 1fr;
+  color: white;
+}
+
+.hightlight {
+  background-color: rgb(72, 72, 72);
+}
