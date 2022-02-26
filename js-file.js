@@ -20,10 +20,14 @@ switchButton.addEventListener("click", () => {
   getCoords(currentLocation, unit);
 });
 
-submit.addEventListener("click", () => {
+submit.addEventListener("click", (event) => submitFunction(event));
+
+function submitFunction(event) {
+  event.preventDefault();
+  currentLocation = form.value;
   getCoords(form.value);
   form.value = "";
-});
+}
 
 dailyButton.addEventListener("click", () => {
   dailyButton.classList.add("hightlight");
@@ -71,6 +75,11 @@ function getCoords(location, unit) {
       let lat = response[0].lat;
       let lon = response[0].lon;
       getData(lat, lon, unit);
+    })
+    .catch(function () {
+      alert("invalid input");
+      currentLocation = "Cambridge, US";
+      getCoords(currentLocation, unit);
     });
 }
 
@@ -133,9 +142,13 @@ function fillLeftDiv(info) {
   let main = document.getElementById("main-left");
   let temp = document.getElementById("temp-left");
   let time = document.getElementById("time-left");
+  let img = document.getElementById("main-img");
 
   main.textContent = info["main"];
   temp.textContent = info["temp"];
+  img.classList.add("main-img");
+  let id = chooseIcon(info["id"]);
+  img.src = id;
   time.textContent = formatDateforMain(info["current-time"]);
 }
 
@@ -153,7 +166,7 @@ function fillBottom(info) {
 
 function createDataObj(response) {
   let info = {};
-  info["main"] = response.daily[0].weather[0].main;
+  info["main"] = response.current.weather[0].main;
   info["description"] = response.current.weather[0].description;
   info["temp"] = `${response.current.temp} °${displayedUnit}`;
   info["feels_like"] = `${response.current.feels_like} °${displayedUnit}`;
@@ -163,6 +176,7 @@ function createDataObj(response) {
   info["wind"] = `${response.current.wind_speed} ${displayedSpeed}`;
   info["cloud-cover"] = response.current.clouds;
   info["current-time"] = createDate(response.current.dt);
+  info["id"] = response.current.weather[0].id;
 
   if (response.daily[0].rain == undefined) {
     info["rain"] = "0%";
@@ -178,6 +192,7 @@ function createDataObj(response) {
       max_temp: response.daily[i].temp.max,
       min_temp: response.daily[i].temp.min,
       main: response.daily[i].weather[0].main,
+      id: response.daily[i].weather[0].id,
       time: formatDateForDaily(createDate(response.daily[i].dt)),
     });
   }
@@ -186,6 +201,7 @@ function createDataObj(response) {
     info["hourly"].push({
       temp: response.hourly[i].temp,
       main: response.hourly[i].weather[0].main,
+      id: response.hourly[i].weather[0].id,
       time: formatAMPM(formatDateForHourly(createDate(response.hourly[i].dt))),
     });
   }
@@ -198,14 +214,15 @@ function createDailyTile(obj) {
 
   let tile = document.createElement("div");
   let tileTime = document.createElement("h3");
-  let tileMain = document.createElement("p");
+  let tileMain = document.createElement("img");
   let tileMax = document.createElement("p");
   let tileMin = document.createElement("p");
 
   tileTime.textContent = obj.time;
-  tileMax.textContent = `${obj.max_temp} °${displayedUnit}`;
-  tileMin.textContent = `${obj.min_temp} °${displayedUnit}`;
-  tileMain.textContent = obj.main;
+  tileMax.textContent = `H: ${obj.max_temp} °${displayedUnit}`;
+  tileMin.textContent = `L: ${obj.min_temp} °${displayedUnit}`;
+  tileMain.classList.add("footer-img");
+  tileMain.src = chooseIcon(obj.id);
 
   tile.appendChild(tileTime);
   tile.appendChild(tileMain);
@@ -220,12 +237,13 @@ function createHourlyTile(obj) {
 
   let tile = document.createElement("div");
   let tileTime = document.createElement("h3");
-  let tileMain = document.createElement("p");
+  let tileMain = document.createElement("img");
   let tileTemp = document.createElement("p");
 
   tileTime.textContent = obj.time;
   tileTemp.textContent = `${obj.temp} °${displayedUnit}`;
-  tileMain.textContent = obj.main;
+  tileMain.classList.add("footer-img");
+  tileMain.src = chooseIcon(obj.id);
 
   tile.appendChild(tileTime);
   tile.appendChild(tileMain);
@@ -274,5 +292,19 @@ function formatAMPM(hours) {
 function removeChildren(parent) {
   while (parent.lastChild) {
     parent.removeChild(parent.lastChild);
+  }
+}
+
+function chooseIcon(id) {
+  if (id >= 801 && id <= 804) {
+    return "./SVG/cloudy.svg";
+  } else if (id == 800) {
+    return "./SVG/sun.svg";
+  } else if (id >= 600 && id <= 622) {
+    return "./SVG/snow.svg";
+  } else if (id >= 300 && id <= 531) {
+    return "./SVG/rainy.svg";
+  } else if (id >= 200 && id <= 232) {
+    return "./SVG/lightning.svg";
   }
 }

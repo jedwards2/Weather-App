@@ -28,6 +28,7 @@ body {
   background-color: transparent;
   border: 1px solid white;
   color: white;
+  border-radius: 5px;
 }
 
 .small-img {
@@ -76,17 +77,14 @@ body {
 }
 
 #temp-left {
-  margin-top: -35px;
   font-size: 3em;
-}
-
-#footer {
 }
 
 .default-button {
   border: 1px solid white;
   background-color: transparent;
   color: white;
+  border-radius: 5px;
 }
 .default-button:hover {
   background-color: rgb(154, 154, 154);
@@ -101,4 +99,14 @@ body {
 
 .hightlight {
   background-color: rgb(72, 72, 72);
+}
+
+.main-img {
+  width: 100px;
+  height: 100px;
+}
+
+.footer-img {
+  width: 25px;
+  height: 25px;
 }
