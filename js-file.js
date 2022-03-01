@@ -128,12 +128,12 @@ function getData(lat, lon, unit = "imperial") {
 
 function fillRightDiv(info) {
   let feelsLike = document.getElementById("feels-like-info");
-  let rain = document.getElementById("rain-info");
+  let clouds = document.getElementById("cloud-info");
   let humidity = document.getElementById("humidity-info");
   let wind = document.getElementById("wind-info");
 
   feelsLike.textContent = info["feels_like"];
-  rain.textContent = info["rain"];
+  clouds.textContent = info["cloud-cover"];
   humidity.textContent = info["humidity"];
   wind.textContent = info["wind"];
 }
@@ -174,15 +174,15 @@ function createDataObj(response) {
   info["humidity"] = `${response.current.humidity} %`;
   info["visibility"] = response.current.visibility;
   info["wind"] = `${response.current.wind_speed} ${displayedSpeed}`;
-  info["cloud-cover"] = response.current.clouds;
+  info["cloud-cover"] = `${response.current.clouds} %`;
   info["current-time"] = createDate(response.current.dt);
   info["id"] = response.current.weather[0].id;
 
-  if (response.daily[0].rain == undefined) {
-    info["rain"] = "0%";
-  } else {
-    info["rain"] = `${response.daily[0].rain}%` || `0%`;
-  }
+  // if (response.daily[0].rain == undefined) {
+  //   info["rain"] = "0%";
+  // } else {
+  //   info["rain"] = `${response.daily[0].rain}%` || `0%`;
+  // }
 
   info["daily"] = [];
   info["hourly"] = [];
