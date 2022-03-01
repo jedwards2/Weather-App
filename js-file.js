@@ -263,9 +263,19 @@ function createDate(dt) {
 
 function formatDateforMain(date) {
   date = date.toString().split(" ");
-  date.splice(5, 4);
+
+  console.log(date);
+  let time = date[4];
+  time = time.split(":");
+  time.splice(2, 1);
+  let hours = formatAMPM(time[0]);
+  hours = hours.split(" ");
+
+  date.splice(4, 5);
   date = date.join(" ");
-  return date;
+
+  let newDate = `${date} ${hours[0]}:${time[1]} ${hours[1]}`;
+  return newDate;
 }
 
 function formatDateForDaily(date) {
