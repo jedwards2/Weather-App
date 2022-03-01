@@ -78,6 +78,7 @@ body {
 
 #temp-left {
   font-size: 3em;
+  margin-top: -10px;
 }
 
 .default-button {
@@ -104,6 +105,7 @@ body {
 .main-img {
   width: 100px;
   height: 100px;
+  margin-top: -50px;
 }
 
 .footer-img {
