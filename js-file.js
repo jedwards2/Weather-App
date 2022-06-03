@@ -63,7 +63,7 @@ function setDisplayedUnits() {
 
 function getCoords(location, unit) {
   fetch(
-    `https://cors-anywhere.herokuapp.com//api.openweathermap.org/geo/1.0/direct?q=${location}&limit=2&appid=a5cb39ed0a3bdbd7ba4f64cb5b391fe1`,
+    `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=2&appid=a5cb39ed0a3bdbd7ba4f64cb5b391fe1`,
     {
       mode: "cors",
     }
@@ -85,7 +85,7 @@ function getCoords(location, unit) {
 
 function getAndSetCityName(lat, lon) {
   fetch(
-    `https://cors-anywhere.herokuapp.com/api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=2&appid=a5cb39ed0a3bdbd7ba4f64cb5b391fe1`,
+    `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=2&appid=a5cb39ed0a3bdbd7ba4f64cb5b391fe1`,
     {
       mode: "cors",
     }
@@ -105,7 +105,7 @@ function displayCityName(name) {
 
 function getData(lat, lon, unit = "imperial") {
   fetch(
-    `https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${unit}&appid=a5cb39ed0a3bdbd7ba4f64cb5b391fe1`,
+    `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${unit}&appid=a5cb39ed0a3bdbd7ba4f64cb5b391fe1`,
     {
       mode: "cors",
     }
